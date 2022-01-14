@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      // title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -46,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           const Align(
-            alignment: Alignment(0, -0.9),
+            alignment: Alignment(0, -0.8),
             child: Text(
-              "The your\nreaction speed",
+              "Test your \nreaction speed",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 38,
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.center,
             child: ColoredBox(
-              color: Colors.black12,
+              color: Color(0xFF6D6D6D),
               child: SizedBox(
                 height: 160,
                 width: 300,
@@ -69,9 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     millisecondsText,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -79,13 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Align(
-            alignment: Alignment(0, 0.9),
+            alignment: Alignment(0, 0.8),
             child: GestureDetector(
               onTap: () => setState(() {
                 switch (gameState) {
                   case GameState.readyToStart:
                     gameState = GameState.waiting;
                     millisecondsText = "";
+
                     _startWaitingTimer();
                     break;
                   case GameState.waiting:
@@ -106,9 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       _getButtonText(),
                       style: const TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
+                        fontSize: 38,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
                       ),
                     ),
                   ),
