@@ -39,10 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Timer? waitingTimer;
   Timer? stoppableTimer;
 
+  Color? color;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF282E3D),
+      backgroundColor: const Color(0xFF282E3D),
       body: Stack(
         children: [
           const Align(
@@ -60,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.center,
             child: ColoredBox(
-              color: Color(0xFF6D6D6D),
+              color: const Color(0xFF6D6D6D),
               child: SizedBox(
                 height: 160,
                 width: 300,
@@ -79,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Align(
-            alignment: Alignment(0, 0.8),
+            alignment: const Alignment(0, 0.8),
             child: GestureDetector(
               onTap: () => setState(() {
                 switch (gameState) {
@@ -99,7 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               }),
               child: ColoredBox(
-                color: Colors.black12,
+                color: _getButtonColor(),
+                
                 child: SizedBox(
                   height: 200,
                   width: 200,
@@ -121,10 +124,26 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+  
+  _getButtonColor() {
+    switch (gameState) {
+      
+      case GameState.readyToStart:
+        color = const Color(0xFF40CA88);
+        return color;
+      case GameState.waiting:
+        color = const Color(0xFFE0982D);
+        return color;
+      case GameState.canBeStopped:
+        color = const Color(0xFFE02D47);
+        return color;
+    }
+  }
 
   String _getButtonText() {
     switch (gameState) {
       case GameState.readyToStart:
+
         return "START";
         break;
       case GameState.waiting:
@@ -147,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _startStoppableTimer() {
-    stoppableTimer = Timer.periodic(Duration(milliseconds: 16), (timer) {
+    stoppableTimer = Timer.periodic(const Duration(milliseconds: 16), (timer) {
       setState(() {
         millisecondsText = "${timer.tick * 16} ms";
       });
