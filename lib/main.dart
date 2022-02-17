@@ -39,8 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Timer? waitingTimer;
   Timer? stoppableTimer;
 
-  Color? color;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
               }),
               child: ColoredBox(
                 color: _getButtonColor(),
-                
                 child: SizedBox(
                   height: 200,
                   width: 200,
@@ -124,26 +121,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  
-  _getButtonColor() {
+
+  Color _getButtonColor() {
     switch (gameState) {
-      
       case GameState.readyToStart:
-        color = const Color(0xFF40CA88);
-        return color;
+        return const Color(0xFF40CA88);
       case GameState.waiting:
-        color = const Color(0xFFE0982D);
-        return color;
+        return const Color(0xFFE0982D);
       case GameState.canBeStopped:
-        color = const Color(0xFFE02D47);
-        return color;
+        return const Color(0xFFE02D47);
     }
   }
 
   String _getButtonText() {
     switch (gameState) {
       case GameState.readyToStart:
-
         return "START";
         break;
       case GameState.waiting:
@@ -170,7 +162,6 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         millisecondsText = "${timer.tick * 16} ms";
       });
-
     });
   }
 
@@ -180,8 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
     stoppableTimer?.cancel();
     super.dispose();
   }
-
-
 }
 
 enum GameState { readyToStart, waiting, canBeStopped }
